@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Captioning with Transformers.js (WebGPU)</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        text-align: center;
+      }
+      img {
+        max-width: 100%;
+        margin-top: 1rem;
+      }
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+      }
+      #spinner {
+        margin: 1rem auto;
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      #spinner.hidden {
+        display: none;
+      }
+      #inputImage {
+        display: none;
+        margin: 1rem auto;
+        max-height: 400px;
+      }
+      #inputImage.visible {
+        display: block;
+      }
+      #error {
+        color: red;
+        margin: 1rem 0;
+        display: none;
+      }
+      #error.visible {
+        display: block;
+      }
+      /* Hidden canvas used for preprocessing */
+      #canvas {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Image Captioning with Transformers.js (WebGPU)</h1>
+    <p id="status">Initializing...</p>
+    <div id="spinner"></div>
+    <div id="error"></div>
+    <input type="file" id="imageInput" accept="image/*" />
+    <button id="inferenceButton" disabled>Run Inference</button>
+    <img id="inputImage" alt="Uploaded Image" />
+    <canvas id="canvas"></canvas>
+    <h2>Caption Output:</h2>
+    <p id="result"></p>
+
+    <script type="module">
+      // Use the latest Transformers.js v3 that supports WebGPU
+      import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.3.3";
+      
+      // Configure environment
+      env.allowLocalModels = false;
+      env.useBrowserCache = true;
+      env.remoteModels = true;
+      
+      let captionPipeline;
+
+      function showError(message) {
+        const errorEl = document.getElementById('error');
+        errorEl.textContent = message;
+        errorEl.classList.add('visible');
+      }
+
+      function hideError() {
+        document.getElementById('error').classList.remove('visible');
+      }
+
+      function updateStatus(message) {
+        document.getElementById("status").textContent = message;
+      }
+
+      function hideSpinner() {
+        document.getElementById("spinner").classList.add("hidden");
+      }
+
+      function showSpinner() {
+        document.getElementById("spinner").classList.remove("hidden");
+      }
+
+      // Preprocess the image by drawing it onto a canvas and converting to a data URL string.
+      async function preprocessImage(imgElement) {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set the canvas to the desired dimensions (e.g., 224x224)
+        canvas.width = 224;
+        canvas.height = 224;
+        
+        // Draw the image onto the canvas, which resizes it
+        ctx.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
+        
+        // Convert the canvas to a data URL string (JPEG format)
+        return canvas.toDataURL("image/jpeg");
+      }
+
+      // Initialize the pipeline when the page loads.
+      async function initPipeline() {
+        // Check if WebGPU is supported
+        if (!navigator.gpu) {
+          updateStatus("WebGPU not supported on this browser.");
+          showError("WebGPU is not supported. Please use a compatible browser.");
+          return;
+        }
+
+        showSpinner();
+        updateStatus("Loading model on WebGPU...");
+        try {
+          // Initialize the pipeline with device set to 'webgpu'
+          captionPipeline = await pipeline("image-to-text", "Xenova/vit-gpt2-image-captioning", {
+            revision: "main",
+            quantized: true,
+            device: "webgpu",
+            progress_callback: (progress) => {
+              if (progress.status === 'progress') {
+                updateStatus(`Loading model... ${Math.round(progress.progress * 100)}%`);
+              }
+            }
+          });
+          updateStatus("Model loaded and ready!");
+          document.getElementById("inferenceButton").disabled = false;
+          hideError();
+        } catch (err) {
+          showError(`Error loading model: ${err.message}`);
+          updateStatus("Error: Model failed to load");
+          console.error(err);
+        } finally {
+          hideSpinner();
+        }
+      }
+
+      // Handle image upload and run inference.
+      async function runInference() {
+        hideError();
+        const fileInput = document.getElementById("imageInput");
+        const file = fileInput.files[0];
+        if (!file) {
+          showError("Please select an image file.");
+          return;
+        }
+
+        const imgElement = document.getElementById("inputImage");
+        showSpinner();
+        updateStatus("Running inference...");
+        
+        try {
+          // Create a blob URL for the uploaded image
+          const imageUrl = URL.createObjectURL(file);
+          
+          // Load the image and display it
+          imgElement.src = imageUrl;
+          imgElement.classList.add('visible');
+          
+          // Wait for the image to load
+          await new Promise((resolve, reject) => {
+            imgElement.onload = resolve;
+            imgElement.onerror = () => reject(new Error('Failed to load image'));
+          });
+
+          // Preprocess the image to obtain a data URL string
+          const processedImageUrl = await preprocessImage(imgElement);
+          
+          // Run inference by passing the data URL string to the pipeline
+          const output = await captionPipeline(processedImageUrl);
+          
+          // Display the result
+          const caption = output[0]?.generated_text || 'No caption generated';
+          document.getElementById("result").textContent = caption;
+          updateStatus("Inference complete!");
+          
+          // Clean up the object URL
+          URL.revokeObjectURL(imageUrl);
+        } catch (err) {
+          showError(`Error during inference: ${err.message}`);
+          updateStatus("Error during inference");
+          console.error(err);
+        } finally {
+          hideSpinner();
+        }
+      }
+
+      // Set up event listeners
+      document.getElementById("inferenceButton").addEventListener("click", runInference);
+      
+      // Initialize pipeline on page load
+      window.addEventListener("DOMContentLoaded", initPipeline);
+    </script>
+  </body>
+</html>
+
