@@ -7,10 +7,51 @@ export default function CameraFeed() {
   const [error, setError] = useState<string>('');
   const [isSequenceRunning, setIsSequenceRunning] = useState(false);
   const sequenceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const audioElements = useRef<{ [key: string]: HTMLAudioElement }>({});
 
-  const playAudio = (filename: string) => {
-    const audio = new Audio(`/${filename}`);
-    audio.play();
+  // Preload audio files
+  useEffect(() => {
+    const audioFiles = ['starting.wav', '1.wav', '2.wav', '3.wav', '4.wav', '5.wav', 'yes.wav', 'no.wav'];
+    
+    audioFiles.forEach(filename => {
+      const audio = new Audio();
+      audio.src = `/${filename}`;
+      audio.preload = 'auto';
+      audioElements.current[filename] = audio;
+    });
+
+    return () => {
+      // Cleanup audio elements
+      Object.values(audioElements.current).forEach(audio => {
+        audio.pause();
+        audio.src = '';
+      });
+    };
+  }, []);
+
+  const playAudio = async (filename: string) => {
+    try {
+      const audio = audioElements.current[filename];
+      if (!audio) {
+        console.error(`Audio file ${filename} not found`);
+        return;
+      }
+      
+      // Reset the audio to start
+      audio.currentTime = 0;
+      
+      // Create and wait for the play promise
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        try {
+          await playPromise;
+        } catch (error) {
+          console.error('Playback failed:', error);
+        }
+      }
+    } catch (error) {
+      console.error('Error playing audio:', error);
+    }
   };
 
   const startAudioSequence = () => {
@@ -23,17 +64,17 @@ export default function CameraFeed() {
     }
 
     // Schedule all audio plays
-    setTimeout(() => playAudio('starting.wav'), 1000);  // 30s
-    setTimeout(() => playAudio('1.wav'), 30000);  // 30s
-    setTimeout(() => playAudio('2.wav'), 60000);  // 30s after first
-    setTimeout(() => playAudio('3.wav'), 90000);  // 30s after second
-    setTimeout(() => playAudio('yes.wav'), 95000);  // 5s after third
-    setTimeout(() => playAudio('4.wav'), 115000);  // 20s after yes
-    setTimeout(() => playAudio('5.wav'), 135000);  // 20s after fourth
+    setTimeout(() => playAudio('starting.wav'), 1000);
+    setTimeout(() => playAudio('1.wav'), 30000);
+    setTimeout(() => playAudio('2.wav'), 60000);
+    setTimeout(() => playAudio('3.wav'), 90000);
+    setTimeout(() => playAudio('yes.wav'), 95000);
+    setTimeout(() => playAudio('4.wav'), 115000);
+    setTimeout(() => playAudio('5.wav'), 135000);
     setTimeout(() => {
       playAudio('no.wav');
       setIsSequenceRunning(false);
-    }, 140000);  // 5s after fifth
+    }, 140000);
 
     sequenceTimeoutRef.current = setTimeout(() => {
       setIsSequenceRunning(false);
