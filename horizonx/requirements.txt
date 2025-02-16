@@ -1,0 +1,15 @@
+fastapi==0.109.2
+uvicorn==0.27.1
+websockets==12.0
+pydantic==2.6.1
+python-multipart==0.0.7
+sqlalchemy==2.0.27
+psycopg2-binary==2.9.9
+alembic==1.13.1
+python-jose==3.3.0
+passlib==1.7.4
+python-dotenv==1.0.1
+httpx==0.26.0
+aiopg==1.4.0
+aiomysql==0.1.1
+geoalchemy2==0.10.0 
