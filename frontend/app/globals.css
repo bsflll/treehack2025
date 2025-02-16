@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  margin: 0;
+  padding: 0;
+}
+
+.mapboxgl-canvas {
+  outline: none;
+  border-radius: 0;
+}
+
+.mapboxgl-ctrl-top-right {
+  margin-top: 1rem;
+}
+
+.complaint-marker {
+  animation: pulse 2s infinite;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.2s;
+}
+
+.complaint-marker:hover {
+  transform: scale(1.2);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(67, 160, 71, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(67, 160, 71, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(67, 160, 71, 0);
+  }
+}
+
+.temporary-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: tempPulse 2s ease-out;
+  border: 2px solid rgba(67, 160, 71, 0.1);
+  box-shadow: 0 0 5px rgba(67, 160, 71, 0.1);
+  pointer-events: none;
+}
+
+@keyframes tempPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.mapboxgl-popup {
+  z-index: 1;
+}
+
+.mapboxgl-popup-content {
+  padding: 0 !important;
+  background: transparent !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden;
+}
+
+/* Add these styles after your existing mapbox-related styles */
+.complaint-sidebar-overlay {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

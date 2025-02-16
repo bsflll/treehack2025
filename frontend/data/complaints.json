@@ -1,0 +1,274 @@
+{
+  "complaints": [
+    {
+      "issue_type": "Street Sanitation",
+      "location": "300 block of Hyde Street, Tenderloin",
+      "description": "Local residents are complaining about the constant presence of human and animal feces, used syringes, and accumulating trash along the streets of the 300 block of Hyde Street. We demand prompt action to address these daily hazards.",
+      "source": "NBC Bay Area",
+      "source_links": [
+        "https://www.nbcbayarea.com/news/local/walking-san-franciscos-dirtiest-block-with-snapcrap-app-creator/204130/"
+      ],
+      "date": "2024-03-18",
+      "category": "Public Health",
+      "coordinates": [
+        37.779238,
+        -122.419359
+      ]
+    },
+    {
+      "issue_type": "Illegal Dumping",
+      "location": "Fillmore Street",
+      "description": "Citizens on Fillmore Street are outraged by the recurring illegal dumping that leaves hazardous waste and trash scattered throughout the area. We demand stronger enforcement and immediate cleanup efforts.",
+      "source": "CBS News",
+      "source_links": [
+        "https://www.cbsnews.com/sanfrancisco/news/san-francisco-commits-more-resources-to-tackle-illegal-dumping/"
+      ],
+      "date": "2024-07-12",
+      "category": "Waste Management",
+      "coordinates": [
+        37.798645,
+        -122.42224
+      ]
+    },
+    {
+      "issue_type": "Air Quality",
+      "location": "Bayview-Hunters Point",
+      "description": "Residents in Bayview-Hunters Point are distressed by the extremely poor air quality caused by high levels of particulate pollution and industrial emissions. We fear for our health and demand immediate action to reduce these risks.",
+      "source": "CBS News",
+      "source_links": [
+        "https://www.cbsnews.com/sanfrancisco/news/new-report-shows-california-and-the-bay-area-struggling-with-air-pollution/"
+      ],
+      "date": "2024-04-23",
+      "category": "Environmental Health",
+      "coordinates": [
+        37.732614,
+        -122.393227
+      ]
+    },
+    {
+      "issue_type": "Trash Accumulation",
+      "location": "Tenderloin District",
+      "description": "Citizens in the Tenderloin District are fed up with the massive accumulation of trash—including furniture, bicycles, and hazardous waste—piling up on sidewalks. This chronic problem is a serious public health concern that demands immediate attention.",
+      "source": "CBS News",
+      "source_links": [
+        "https://www.cbsnews.com/sanfrancisco/news/cleanup-crews-san-francisco-tenderloin-district-thankless-challenges/"
+      ],
+      "date": "2024-09-22",
+      "category": "Public Works",
+      "coordinates": [
+        37.782383,
+        -122.41736
+      ]
+    },
+    {
+      "issue_type": "Infrastructure Costs",
+      "location": "Downtown San Francisco",
+      "description": "Residents are upset about the $20,900 price tag on the new 'Soft Square' trash cans with QR codes, especially when litter problems continue unabated. We demand more responsible and cost-effective spending by our city.",
+      "source": "VOA News",
+      "source_links": [
+        "https://learningenglish.voanews.com/a/for-a-trash-can-in-san-francisco/6702595.html"
+      ],
+      "date": "2024-06-15",
+      "category": "Municipal Spending",
+      "coordinates": [
+        37.780083,
+        -122.42017
+      ]
+    },
+    {
+      "issue_type": "Illegal Dumping",
+      "location": "Joffrey Simpson's neighborhood (30+ dumping hotspots)",
+      "description": "Citizens in the neighborhood are complaining about constant illegal dumping at more than 30 identified hotspots, resulting in an annual accumulation of 18,000 tons of street trash. We demand immediate intervention to clean up our community.",
+      "source": "CBS News",
+      "source_links": [
+        "https://www.cbsnews.com/sanfrancisco/news/sf-tenderloin-residents-businesses-lawsuit-allege-containment-zone-drug-use-homelessness/"
+      ],
+      "date": "2024-02-15",
+      "category": "Trash",
+      "coordinates": [
+        37.779238,
+        -122.419359
+      ]
+    },
+    {
+      "issue_type": "Human/Animal Feces",
+      "location": "Tenderloin District (all blocks)",
+      "description": "Residents in the Tenderloin District are outraged by the persistent contamination of our streets with human and animal feces. Despite weekly steam-cleaning and constant pressure washing, the issue remains unresolved and hazardous.",
+      "source": "ABC7 News",
+      "source_links": [
+        "https://abc7news.com/building-a-better-bay-area-san-francisco-human-feces-poop/5732249/"
+      ],
+      "date": "2024-03-18",
+      "category": "Sanitation",
+      "coordinates": [
+        37.782383,
+        -122.41736
+      ]
+    },
+    {
+      "issue_type": "Commercial Blight",
+      "location": "Mid-Market Neighborhood (1355 Market St, former X HQ)",
+      "description": "Local business owners and residents are complaining about the commercial blight in our neighborhood, with vacant retail spaces and abandoned items near the former X headquarters leading to significant economic losses.",
+      "source": "Los Angeles Times",
+      "source_links": [
+        "https://www.latimes.com/business/story/2024-09-13/elon-musks-x-departs-san-francisco-twitter-tax-break"
+      ],
+      "date": "2024-09-13",
+      "category": "Urban Decay",
+      "coordinates": [
+        37.779238,
+        -122.419359
+      ]
+    },
+    {
+      "issue_type": "Air Pollution",
+      "location": "San Francisco-San Jose-Oakland Metro Area",
+      "description": "Citizens across the metro area are alarmed by dangerous levels of air pollution, with our region ranking poorly for ozone and particle pollution. Over 90% of residents are facing failing air quality grades, and we demand cleaner air now.",
+      "source": "American Lung Association",
+      "source_links": [
+        "https://www.cbsnews.com/sanfrancisco/news/new-report-shows-california-and-the-bay-area-struggling-with-air-pollution/"
+      ],
+      "date": "2024-04-24",
+      "category": "Environmental",
+      "coordinates": [
+        37.779238,
+        -122.419359
+      ]
+    },
+    {
+      "issue_type": "Encampment Waste",
+      "location": "6th Street Corridor, Tenderloin",
+      "description": "Residents are frustrated by the removal of 36,000 lbs of trash every week from homeless encampments, which includes hazardous materials that block sidewalks and contaminate storm drains. We demand more effective solutions to protect our community.",
+      "source": "CBS News",
+      "source_links": [
+        "https://www.cbsnews.com/sanfrancisco/news/cleanup-crews-san-francisco-tenderloin-district-thankless-challenges/"
+      ],
+      "date": "2024-08-22",
+      "category": "Homelessness",
+      "coordinates": [
+        37.76904,
+        -122.39426
+      ]
+    },
+    {
+      "issue_type": "Illegal Dumping",
+      "location": "Clement Street near Green Apple Books (6th Ave & Clement St), Richmond District",
+      "description": "Citizens in the Richmond District are complaining about illegal dumping on Clement Street, where overflowing trash bags and broken furniture are dumped in front of businesses, causing major accessibility issues.",
+      "source": "SF Standard",
+      "source_links": [
+        "https://sfstandard.com/2024/05/04/illegal-dumping-investigators-public-works/"
+      ],
+      "date": "2024-05-04",
+      "category": "Trash/Illegal Dumping",
+      "coordinates": [
+        48.77353,
+        9.17742
+      ]
+    },
+    {
+      "issue_type": "Human Feces Accumulation",
+      "location": "300 block of Hyde Street (Hyde & Eddy St), Tenderloin",
+      "description": "Residents on the 300 block of Hyde Street are outraged by the continual accumulation of human feces, used syringes, and trash on sidewalks, which has earned the block a notorious reputation as the dirtiest in SF. We demand urgent action to safeguard pedestrians.",
+      "source": "NBC Bay Area",
+      "source_links": [
+        "https://www.nbcbayarea.com/news/local/walking-san-franciscos-dirtiest-block-with-snapcrap-app-creator/204130/"
+      ],
+      "date": "2023-09-22",
+      "category": "Public Health",
+      "coordinates": [
+        31.279756,
+        34.249119
+      ]
+    },
+    {
+      "issue_type": "Chronic Illegal Dumping",
+      "location": "Bayview-Hunters Point (3rd St & Quesada Ave)",
+      "description": "Citizens in Bayview-Hunters Point are frustrated by the chronic illegal dumping of construction debris, household waste, and hazardous materials. Despite $1,000 fines for offenders, the problem persists and our community remains at risk.",
+      "source": "CBS San Francisco",
+      "source_links": [
+        "https://www.cbsnews.com/sanfrancisco/news/san-francisco-commits-more-resources-to-tackle-illegal-dumping/"
+      ],
+      "date": "2024-06-12",
+      "category": "Trash/Illegal Dumping",
+      "coordinates": [
+        38.627464,
+        -90.19835
+      ]
+    },
+    {
+      "issue_type": "Overflowing Public Bins",
+      "location": "Tenderloin Housing Clinic (126 Hyde St)",
+      "description": "Residents near the Tenderloin Housing Clinic are upset that non-functional public bins are overflowing and attracting illegal dumping, which in turn creates significant wheelchair access barriers. We demand that our repeated complaints be addressed promptly.",
+      "source": "SF Standard",
+      "source_links": [
+        "https://sfstandard.com/2024/05/04/illegal-dumping-investigators-public-works/"
+      ],
+      "date": "2024-05-04",
+      "category": "Waste Management",
+      "coordinates": [
+        37.782098,
+        -122.415329
+      ]
+    },
+    {
+      "issue_type": "Residential Bin Violations",
+      "location": "Mirabel Avenue, Bernal Heights",
+      "description": "Citizens in Bernal Heights are complaining about residential bin violations where visible garbage bins are being fined despite the lack of alternative storage options. We feel these enforcement actions are unfair and impractical.",
+      "source": "ABC7 News",
+      "source_links": [
+        "https://abc7news.com/sf-bernal-heights-garbage-bin-recycling-bins-san-francisco-department-of-public-works-notice/13457829/"
+      ],
+      "date": "2023-08-15",
+      "category": "Waste Management",
+      "coordinates": [
+        37.746511,
+        -122.416425
+      ]
+    },
+    {
+      "issue_type": "Trash in Encampments",
+      "location": "Larkin St between O'Farrell St & Golden Gate Ave, Tenderloin",
+      "description": "Residents are voicing their anger over the more than 36,000 pounds of trash collected weekly near homeless encampments, which includes hazardous waste and items caught in ownership disputes. This situation is unacceptable and demands immediate resolution.",
+      "source": "CBS San Francisco",
+      "source_links": [
+        "https://www.cbsnews.com/sanfrancisco/news/cleanup-crews-san-francisco-tenderloin-district-thankless-challenges/"
+      ],
+      "date": "2023-09-29",
+      "category": "Homelessness-Related Waste",
+      "coordinates": [
+        39.63096,
+        -76.33254
+      ]
+    },
+    {
+      "issue_type": "Corporate Waste Violations",
+      "location": "Twitter HQ (1355 Market St, Suite 900)",
+      "description": "Citizens are complaining about corporate waste violations at Twitter HQ, where makeshift employee bedrooms and accumulated trash highlight serious zoning and safety concerns. We demand accountability and proper oversight.",
+      "source": "NBC Boston",
+      "source_links": [
+        "https://www.nbcboston.com/news/national-international/san-francisco-twitter-beds/2915081/?os=vblhpdr7hy"
+      ],
+      "date": "2022-12-08",
+      "category": "Commercial Waste",
+      "coordinates": [
+        37.776419,
+        -122.416791
+      ]
+    },
+    {
+      "issue_type": "Street Sanitation",
+      "location": "New Location",
+      "description": "New complaint description",
+      "source": "Source",
+      "source_links": [
+        "https://example.com"
+      ],
+      "date": "2025-01-15",
+      "category": "Public Health",
+      "coordinates": [
+        37.7749,
+        -122.4194
+      ]
+    }
+  ]
+}
