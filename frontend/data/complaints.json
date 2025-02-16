@@ -269,6 +269,84 @@
         37.7749,
         -122.4194
       ]
+    },
+    {
+      "issue_type": "Street Sanitation",
+      "location": "Stanford Memorial Church",
+      "description": "Anonymous citizen reports that students are walking on the grass in front of Memorial Church despite clear signage to stay on pathways. This is damaging the historic lawn and landscaping.",
+      "source": "Anonymous Report",
+      "source_links": [],
+      "date": "2024-03-18", 
+      "category": "Public Space",
+      "coordinates": [
+        37.427014,
+        -122.170187
+      ]
+    },
+    {
+      "issue_type": "Street Sanitation", 
+      "location": "Main Quad Fountain",
+      "description": "Anonymous complaint about students sitting on and walking through the historic Main Quad fountain area. This behavior risks damaging the historic structure.",
+      "source": "Anonymous Report",
+      "source_links": [],
+      "date": "2024-03-15",
+      "category": "Public Space",
+      "coordinates": [
+        37.427478,
+        -122.169750
+      ]
+    },
+    {
+      "issue_type": "Street Sanitation",
+      "location": "Green Library West Entrance Garden",
+      "description": "Anonymous report of students creating shortcuts through the ornamental gardens at Green Library's west entrance, trampling protected plant species.",
+      "source": "Anonymous Report", 
+      "source_links": [],
+      "date": "2024-03-12",
+      "category": "Public Space",
+      "coordinates": [
+        37.427586,
+        -122.166603
+      ]
+    },
+    {
+      "issue_type": "Street Sanitation",
+      "location": "Hoover Tower Base",
+      "description": "Anonymous citizen concerned about people sitting and walking on the decorative stonework at the base of Hoover Tower, which could cause wear to the historic structure.",
+      "source": "Anonymous Report",
+      "source_links": [],
+      "date": "2024-03-10",
+      "category": "Public Space", 
+      "coordinates": [
+        37.427793,
+        -122.167463
+      ]
+    },
+    {
+      "issue_type": "Street Sanitation",
+      "location": "Oval Park Center",
+      "description": "Anonymous complaint regarding students walking across and sitting in the center of the historic Oval park area, despite signs requesting to keep off the grass.",
+      "source": "Anonymous Report",
+      "source_links": [],
+      "date": "2024-03-08",
+      "category": "Public Space",
+      "coordinates": [
+        37.429832,
+        -122.169660
+      ]
+    },
+    {
+      "issue_type": "Uncleaned Garbage",
+      "location": "CODA",
+      "description": "Anonymous complaint regarding uncleaned garbage and mess left in public walking areas.",
+      "source": "Anonymous Report",
+      "source_links": [],
+      "date": "2025-02-16",
+      "category": "Public Space",
+      "coordinates": [
+        37.4274745,
+        -122.169750
+      ]
     }
   ]
 }

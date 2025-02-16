@@ -62,8 +62,8 @@ export default function CityMap() {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/light-v11",
-      center: [-122.4194, 37.7749],
-      zoom: 13,
+      center: [-122.169660, 37.429832],
+      zoom: 15,
     })
 
     // Add navigation controls
