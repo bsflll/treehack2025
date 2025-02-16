@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Text-to-Speech</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      textarea {
+        min-height: 150px;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+      }
+
+      .controls {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 4px;
+        background: #0070f3;
+        color: white;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+
+      button:hover:not(:disabled) {
+        background: #0051b3;
+      }
+
+      select {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      .rate-control {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      input[type="range"] {
+        width: 150px;
+      }
+
+      #status {
+        color: #666;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Quick Text-to-Speech</h1>
+      <textarea 
+        id="textInput" 
+        placeholder="Enter text to speak..."
+        spellcheck="true"
+      ></textarea>
+
+      <div class="controls">
+        <button id="playButton">Speak (Space)</button>
+        <button id="pauseButton">Pause (P)</button>
+        <button id="stopButton">Stop (S)</button>
+        
+        <select id="voiceSelect">
+          <option value="">Loading voices...</option>
+        </select>
+
+        <div class="rate-control">
+          <label for="rateInput">Speed:</label>
+          <input 
+            type="range" 
+            id="rateInput" 
+            min="0.5" 
+            max="2" 
+            step="0.1" 
+            value="1"
+          />
+          <span id="rateValue">1.0x</span>
+        </div>
+      </div>
+
+      <p id="status"></p>
+    </div>
+
+    <script>
+      const synth = window.speechSynthesis;
+      let currentUtterance = null;
+
+      // DOM elements
+      const textInput = document.getElementById('textInput');
+      const playButton = document.getElementById('playButton');
+      const pauseButton = document.getElementById('pauseButton');
+      const stopButton = document.getElementById('stopButton');
+      const voiceSelect = document.getElementById('voiceSelect');
+      const rateInput = document.getElementById('rateInput');
+      const rateValue = document.getElementById('rateValue');
+      const status = document.getElementById('status');
+
+      // Initialize voices
+      function loadVoices() {
+        const voices = synth.getVoices();
+        voiceSelect.innerHTML = voices
+          .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
+          .join('');
+      }
+
+      // Load voices when they're ready
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = loadVoices;
+      }
+
+      // Speak function
+      function speak() {
+        if (synth.speaking) {
+          synth.cancel();
+        }
+
+        const text = textInput.value.trim();
+        if (!text) {
+          updateStatus('Please enter some text to speak');
+          return;
+        }
+
+        currentUtterance = new SpeechSynthesisUtterance(text);
+        
+        // Set voice
+        const voices = synth.getVoices();
+        const selectedVoice = voices.find(voice => voice.name === voiceSelect.value);
+        if (selectedVoice) {
+          currentUtterance.voice = selectedVoice;
+        }
+
+        // Set rate
+        currentUtterance.rate = parseFloat(rateInput.value);
+
+        // Event handlers
+        currentUtterance.onstart = () => {
+          updateStatus('Speaking...');
+          playButton.disabled = true;
+        };
+
+        currentUtterance.onend = () => {
+          updateStatus('Done speaking');
+          playButton.disabled = false;
+          currentUtterance = null;
+        };
+
+        currentUtterance.onerror = (event) => {
+          updateStatus(`Error: ${event.error}`);
+          playButton.disabled = false;
+          currentUtterance = null;
+        };
+
+        synth.speak(currentUtterance);
+      }
+
+      // Update status
+      function updateStatus(message) {
+        status.textContent = message;
+      }
+
+      // Event listeners
+      playButton.addEventListener('click', speak);
+      
+      pauseButton.addEventListener('click', () => {
+        if (synth.speaking) {
+          if (synth.paused) {
+            synth.resume();
+            updateStatus('Resumed speaking');
+          } else {
+            synth.pause();
+            updateStatus('Paused speaking');
+          }
+        }
+      });
+
+      stopButton.addEventListener('click', () => {
+        synth.cancel();
+        updateStatus('Stopped speaking');
+        playButton.disabled = false;
+      });
+
+      rateInput.addEventListener('input', () => {
+        const rate = parseFloat(rateInput.value);
+        rateValue.textContent = `${rate.toFixed(1)}x`;
+        if (currentUtterance) {
+          currentUtterance.rate = rate;
+        }
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        // Only handle shortcuts if not typing in textarea
+        if (document.activeElement === textInput) {
+          return;
+        }
+
+        switch (e.key.toLowerCase()) {
+          case ' ':
+            e.preventDefault();
+            speak();
+            break;
+          case 'p':
+            e.preventDefault();
+            pauseButton.click();
+            break;
+          case 's':
+            e.preventDefault();
+            stopButton.click();
+            break;
+        }
+      });
+
+      // Initial status
+      updateStatus('Ready to speak');
+    </script>
+  </body>
+</html> 
