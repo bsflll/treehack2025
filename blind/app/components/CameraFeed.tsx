@@ -23,7 +23,7 @@ export default function CameraFeed() {
     }
 
     // Schedule all audio plays
-    setTimeout(() => playAudio('starting.wav'), 0);  // 30s
+    setTimeout(() => playAudio('starting.wav'), 1000);  // 30s
     setTimeout(() => playAudio('1.wav'), 30000);  // 30s
     setTimeout(() => playAudio('2.wav'), 60000);  // 30s after first
     setTimeout(() => playAudio('3.wav'), 90000);  // 30s after second
