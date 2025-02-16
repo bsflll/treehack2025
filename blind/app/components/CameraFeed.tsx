@@ -66,11 +66,11 @@ export default function CameraFeed() {
     // Schedule all audio plays
     setTimeout(() => playAudio('starting.wav'), 1000);
     setTimeout(() => playAudio('1.wav'), 30000);
-    setTimeout(() => playAudio('2.wav'), 60000);
-    setTimeout(() => playAudio('3.wav'), 90000);
-    setTimeout(() => playAudio('yes.wav'), 95000);
-    setTimeout(() => playAudio('4.wav'), 115000);
-    setTimeout(() => playAudio('5.wav'), 135000);
+    setTimeout(() => playAudio('2.wav'), 50000);
+    setTimeout(() => playAudio('3.wav'), 70000);
+    setTimeout(() => playAudio('yes.wav'), 75000);
+    setTimeout(() => playAudio('4.wav'), 95000);
+    setTimeout(() => playAudio('5.wav'), 100000);
     setTimeout(() => {
       playAudio('no.wav');
       setIsSequenceRunning(false);
