@@ -10,7 +10,14 @@ from openai import OpenAI
 # Initialize the OpenAI client.
 # If you have the OPENAI_API_KEY environment variable set, this may work directly.
 # Otherwise, specify your API key as:
-client = OpenAI(api_key="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")
+num_frames = 5
+if "gemini" in model:
+    client = OpenAI(
+        api_key=os.getenv('GEMINI_API_KEY'),
+        base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+    )
+else:
+    client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 QUESTIONS_CSV = 'questions.csv'
 VIDEOS_FOLDER = 'videos'
